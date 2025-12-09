@@ -1,0 +1,11 @@
+
+.DS_Store
+
+# Godot 4+ specific ignores
+.build/
+.godot/
+.vscode/
+/android/
+
+*.blend[0-9]
+*.kra~
