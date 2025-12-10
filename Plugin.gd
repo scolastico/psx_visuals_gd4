@@ -2,7 +2,7 @@
 @tool extends EditorPlugin
 
 const AUTOLOAD_NAME := "PSXScreenEffects"
-const AUTOLOAD_PATH := "res://addons/psx_visuals/PSXAutoload.gd"
+const AUTOLOAD_PATH := "res://addons/psx_visuals/scripts/PSXAutoload.gd"
 
 const GLOBAL_VAR_AFFINE := "shader_globals/psx_affine_strength"
 const GLOBAL_VAR_BIT_DEPTH := "shader_globals/psx_bit_depth"
