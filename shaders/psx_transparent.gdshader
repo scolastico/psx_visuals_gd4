@@ -4,38 +4,49 @@ render_mode blend_mix, vertex_lighting, depth_draw_always, diffuse_lambert, spec
 #include "uid://bbm41nyy2th3f"
 
 global uniform float psx_affine_strength;
-global uniform vec4 psx_fog_color: source_color;
+global uniform vec4 psx_fog_color;
 global uniform float psx_fog_far;
 global uniform float psx_fog_near;
 global uniform float psx_snap_distance;
 
 // Also known as Gouraud shading.
 uniform bool use_vertex_colors_in_albedo = true;
+uniform bool use_global_fog = true;
+uniform bool flip_backface_normals = true;
 uniform sampler2D albedo: hint_default_white, filter_nearest;
 uniform vec4 albedo_tint: source_color = vec4(1);
 uniform sampler2D emission: hint_default_black, filter_nearest;
 uniform vec3 emission_tint: source_color = vec3(1);
 
 varying vec3 VERTEX_COLOR;
+varying float VERTEX_DEPTH;
+
 varying float fog_strength;
 varying vec2 affine_uv_scaled;
-varying float affine_distance;
 
 void vertex() {
+    VERTEX_COLOR = COLOR.rgb;
+	
 	VERTEX = snap(VERTEX, MODELVIEW_MATRIX, psx_snap_distance);
 	vec3 vertex_world = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	float vertex_distance = distance(vertex_world, CAMERA_POSITION_WORLD);
+	
+	VERTEX_DEPTH = distance(vertex_world, CAMERA_POSITION_WORLD);
+	affine_uv_scaled = UV * VERTEX_DEPTH;
+	fog_strength = (use_global_fog && psx_fog_near != psx_fog_far) ?
+		clamp(psx_fog_color.a * (VERTEX_DEPTH - psx_fog_near) / (psx_fog_far - psx_fog_near), 0.0, 1.0) :
+		0.0;
 
-	fog_strength = clamp(psx_fog_color.a * (vertex_distance - psx_fog_near) / (psx_fog_far - psx_fog_near), 0.0, 1.0);
+	if (flip_backface_normals) {
+		vec3 normal_world = MODEL_NORMAL_MATRIX * NORMAL;
+		vec3 view_dir = normalize(CAMERA_POSITION_WORLD - vertex_world);
 
-    VERTEX_COLOR = COLOR.rgb;
-
-	affine_distance = length((MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz);
-	affine_uv_scaled = UV * affine_distance;
+		bool back_facing = dot(normal_world, view_dir) < 0.0;
+		if (back_facing) NORMAL = -NORMAL;
+	}	
 }
 
 void fragment() {
-	vec2 affine_uv = affine_uv_scaled / affine_distance;
+	vec2 affine_uv = affine_uv_scaled / VERTEX_DEPTH;
 	vec2 uv = mix(UV, affine_uv, psx_affine_strength);
 
 	vec3 fog_rgb = mix(vec3(0), psx_fog_color.rgb, fog_strength);
