@@ -9,14 +9,21 @@ global uniform float psx_fog_far;
 global uniform float psx_fog_near;
 global uniform float psx_snap_distance;
 
-// Also known as Gouraud shading.
+// If enabled, we will Gouraud shading and multiply vertex colors to albedo.
 uniform bool use_vertex_colors_in_albedo = true;
+
+// If enabled, use global PSX fog. Otherwise, fog will not appear on these surfaces, as if there is a hole in the fog.
 uniform bool use_global_fog = true;
+
+// If enabled, this approximates the correct normals for backfaces, as if the mesh is double-sided.
 uniform bool flip_backface_normals = true;
+
 uniform sampler2D albedo: hint_default_white, filter_nearest;
 uniform vec4 albedo_tint: source_color = vec4(1);
+
 uniform sampler2D emission: hint_default_black, filter_nearest;
 uniform vec3 emission_tint: source_color = vec3(1);
+
 uniform float alpha_scissor_threshold: hint_range(0.0, 1.0, 0.01) = 0.5;
 
 varying vec3 VERTEX_COLOR;
@@ -67,7 +74,3 @@ void fragment() {
 	METALLIC = 0.0;
 	AO = 1.0;
 }
-
-//void light() {
-	//
-//}
