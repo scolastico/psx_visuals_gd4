@@ -5,7 +5,7 @@ static var shadow_quad : QuadMesh
 static func _static_init() -> void:
 	shadow_quad = QuadMesh.new()
 	shadow_quad.orientation = PlaneMesh.FACE_Y
-	shadow_quad.material = preload("res://addons/psx_visuals/materials/mat_shadow_32x32.tres")
+	shadow_quad.material = preload("res://addons/psx_visuals_gd4/materials/mat_shadow_32x32.tres")
 
 @export var scale_with_distance : bool = false
 @export var fade_with_distance : bool = false

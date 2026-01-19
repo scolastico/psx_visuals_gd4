@@ -1,7 +1,7 @@
 shader_type spatial;
-render_mode blend_mix, vertex_lighting, depth_draw_always, diffuse_lambert, specular_occlusion_disabled, specular_disabled, shadows_disabled, fog_disabled;
+render_mode blend_mix, vertex_lighting, diffuse_lambert, specular_occlusion_disabled, specular_disabled, shadows_disabled, fog_disabled;
 
-#include "res://addons/psx_visuals/shaders/psx.gdshaderinc"
+#include "res://addons/psx_visuals_gd4/shaders/psx.gdshaderinc"
 
 global uniform float psx_affine_strength;
 global uniform vec4 psx_fog_color;
@@ -17,8 +17,11 @@ uniform bool use_global_fog = true;
 
 uniform sampler2D albedo: hint_default_white, filter_nearest;
 uniform vec4 albedo_tint: source_color = vec4(1);
+
 uniform sampler2D emission: hint_default_black, filter_nearest;
 uniform vec3 emission_tint: source_color = vec3(1);
+
+uniform float alpha_scissor_threshold: hint_range(0.0, 1.0, 0.01) = 0.5;
 
 varying vec3 VERTEX_COLOR;
 varying float VERTEX_DEPTH;
@@ -54,6 +57,7 @@ void fragment() {
 	ALBEDO = albedo_color.rgb * (1.0 - fog_strength) + fog_rgb;
 
 	ALPHA = albedo_color.a;
+	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
 
 	vec4 emission_color = texture(emission, uv) * vec4(emission_tint, 1.0);
 	EMISSION = emission_color.rgb + fog_rgb;
@@ -62,5 +66,4 @@ void fragment() {
 	ROUGHNESS = 0.0;
 	METALLIC = 0.0;
 	AO = 1.0;
-	NORMAL = NORMAL;
 }

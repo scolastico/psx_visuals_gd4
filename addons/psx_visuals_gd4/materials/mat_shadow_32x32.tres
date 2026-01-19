@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3]
 
-[ext_resource type="Shader" path="res://addons/psx_visuals/shaders/psx_transparent.gdshader" id="1_busvn"]
-[ext_resource type="Texture2D" path="res://addons/psx_visuals/textures/shadow_32x32.png" id="2_jq7op"]
+[ext_resource type="Shader" path="res://addons/psx_visuals_gd4/shaders/psx_transparent.gdshader" id="1_busvn"]
+[ext_resource type="Texture2D" path="res://addons/psx_visuals_gd4/textures/shadow_32x32.png" id="2_jq7op"]
 
 [resource]
 render_priority = 0

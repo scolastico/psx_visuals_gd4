@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://addons/psx_visuals_gd4/shaders/psx_postprocess.gdshader" id="1_ty50b"]
+
+[resource]
+shader = ExtResource("1_ty50b")
