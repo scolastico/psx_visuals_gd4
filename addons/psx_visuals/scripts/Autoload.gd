@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const POST_PROCESS_MATERIAL : ShaderMaterial = preload("uid://da2sluxj84btb")
+const POST_PROCESS_MATERIAL : ShaderMaterial = preload("res://addons/psx_visuals/materials/mat_psx_postprocess.tres")
 
 func _init() -> void:
 	layer = -128 

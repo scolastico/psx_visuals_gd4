@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://20ut3o26ngws"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3]
 
 [ext_resource type="Shader" path="res://addons/psx_visuals/shaders/psx_transparent.gdshader" id="1_busvn"]
 [ext_resource type="Texture2D" path="res://addons/psx_visuals/textures/shadow_32x32.png" id="2_jq7op"]

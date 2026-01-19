@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://drgm0tmni178j"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
 
 [ext_resource type="Shader" path="res://addons/psx_visuals/shaders/psx_opaque.gdshader" id="1_aefgp"]
 
