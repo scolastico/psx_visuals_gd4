@@ -17,6 +17,7 @@ The plugin achieves its look through several key components:
 1. Copy the `addons/psx_visuals_gd4` folder into your project's `addons` directory.
 2. Go to **Project Settings > Plugins** and enable **PSX Visuals - GD4 Port**.
 3. Upon activation, the plugin will automatically create the necessary **Shader Globals** in your Project Settings.
+4. Go to **Project Settings > Autoload** and enable `PsxVisualsGd4AutoLoad`
 
 ## How to Use
 
