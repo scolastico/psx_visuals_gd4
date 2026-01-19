@@ -48,11 +48,11 @@ If you are using the "Easy Way" but want certain objects to keep their original 
 * **To disable a single node:** Add a Metadata entry named `psx_disable` (Boolean) and set it to `true`.
 * **To disable a whole branch:** Add a Metadata entry named `psx_disable_children` (Boolean) to a parent node and set it to `true`. This prevents the shader from being applied to any of its descendants.
 
-## Shader Settings Description
+## Shader Settings
 
 You can find these settings under **Project Settings > Shader Globals**.
 
-* **`psx_snap_distance`**: Controls the "vertex jitter." A value of `0.025` is standard; lower values result in smoother movement, while higher values increase the "shaking" effect.
+* **`psx_snap_distance`**: Controls the "vertex jitter". A value of `0.025` is standard; lower values result in smoother movement, while higher values increase the "shaking" effect.
 * **`psx_affine_strength`**: Controls texture warping. `1.0` provides full PSX-style warping, while `0.0` is modern perspective-correct mapping.
 * **`psx_bit_depth`**: Determines the color depth for the dither effect. Lower values (e.g., `4` or `5`) result in more aggressive banding/dithering.
 * **`psx_fog_color`**: The color of the distance fog. The Alpha channel determines the fog's intensity.
@@ -60,5 +60,4 @@ You can find these settings under **Project Settings > Shader Globals**.
 
 ## License
 
-The original forked repository does not provide an explicit license. However, all changes, porting work for Godot 4, and new code provided in this version are licensed under the **MIT License**.
-
+The original forked repository does not provide an explicit license in its source, but it is listed as using the Unlicense on the Godot Asset Library. However, all changes, Godot 4 porting work, and new code provided in this version are licensed under the MIT License.
