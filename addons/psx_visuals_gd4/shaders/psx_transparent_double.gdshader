@@ -7,7 +7,17 @@ render_mode blend_mix, vertex_lighting, depth_draw_always, diffuse_lambert, spec
 uniform bool flip_backface_normals = true;
 
 void vertex() {
-	psx_compute_vertex(VERTEX, COLOR.rgb, UV);
+	vec3 v_col;
+	float v_depth;
+	float v_fog;
+	vec2 v_affine;
+	
+	psx_compute_vertex(VERTEX, COLOR.rgb, UV, v_col, v_depth, v_fog, v_affine);
+	
+	VERTEX_COLOR = v_col;
+	VERTEX_DEPTH = v_depth;
+	fog_strength = v_fog;
+	affine_uv_scaled = v_affine;
 
 	if (flip_backface_normals) {
 		psx_compute_backface_normal(VERTEX, NORMAL);
@@ -16,7 +26,6 @@ void vertex() {
 
 void fragment() {
 	psx_compute_fragment(UV, ALBEDO, ALPHA, EMISSION);
-
 	SPECULAR = 0.0;
 	ROUGHNESS = 0.0;
 	METALLIC = 0.0;

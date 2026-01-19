@@ -4,7 +4,17 @@ render_mode blend_mix, vertex_lighting, depth_draw_always, diffuse_lambert, spec
 #include "res://addons/psx_visuals_gd4/shaders/psx.gdshaderinc"
 
 void vertex() {
-	psx_compute_vertex(VERTEX, COLOR.rgb, UV);
+	vec3 v_col;
+	float v_depth;
+	float v_fog;
+	vec2 v_affine;
+	
+	psx_compute_vertex(VERTEX, COLOR.rgb, UV, v_col, v_depth, v_fog, v_affine);
+	
+	VERTEX_COLOR = v_col;
+	VERTEX_DEPTH = v_depth;
+	fog_strength = v_fog;
+	affine_uv_scaled = v_affine;
 }
 
 void fragment() {

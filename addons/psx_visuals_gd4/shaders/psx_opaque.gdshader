@@ -6,7 +6,17 @@ render_mode blend_mix, vertex_lighting, diffuse_lambert, specular_occlusion_disa
 uniform float alpha_scissor_threshold: hint_range(0.0, 1.0, 0.01) = 0.5;
 
 void vertex() {
-	psx_compute_vertex(VERTEX, COLOR.rgb, UV);
+	vec3 v_col;
+	float v_depth;
+	float v_fog;
+	vec2 v_affine;
+	
+	psx_compute_vertex(VERTEX, COLOR.rgb, UV, v_col, v_depth, v_fog, v_affine);
+	
+	VERTEX_COLOR = v_col;
+	VERTEX_DEPTH = v_depth;
+	fog_strength = v_fog;
+	affine_uv_scaled = v_affine;
 }
 
 void fragment() {

@@ -7,7 +7,8 @@ const float PSX_DITHER_MATRIX[16] = float[](
 
 vec4 dither(vec4 color, vec2 uv, int depth) {
 	ivec2 p = ivec2(floor(uv));
-	int xi = int(p.x & 3); // mod 4
+	int xi = int(p.x & 3);
+	// mod 4
 	int yi = int(p.y & 3); // mod 4
 	int index = xi + yi * 4;
 	float norm = PSX_DITHER_MATRIX[index] / 16.0;
@@ -47,19 +48,19 @@ varying vec2 affine_uv_scaled;
 
 // --- SPATIAL LOGIC HELPERS ---
 
-void psx_compute_vertex(inout vec3 vertex, vec3 color, vec2 uv) {
-	VERTEX_COLOR = color;
+void psx_compute_vertex(inout vec3 vertex, vec3 color, vec2 uv, out vec3 out_color, out float out_depth, out float out_fog, out vec2 out_affine_uv) {
+	out_color = color;
 	// GODOT 4 FIX: VERTEX is already in View Space. 
 	// We snap it directly without multiplying by MODELVIEW_MATRIX.
 	vertex = round(vertex / psx_snap_distance) * psx_snap_distance;
 
 	// GODOT 4 FIX: Calculate depth directly from View Space coordinates.
 	// Since the camera is at (0,0,0) in View Space, length(VERTEX) is the distance.
-	VERTEX_DEPTH = length(vertex);
-	affine_uv_scaled = uv * VERTEX_DEPTH;
+	out_depth = length(vertex);
+	out_affine_uv = uv * out_depth;
 	
-	fog_strength = (use_global_fog && psx_fog_near != psx_fog_far) ?
-		clamp(psx_fog_color.a * (VERTEX_DEPTH - psx_fog_near) / (psx_fog_far - psx_fog_near), 0.0, 1.0) :
+	out_fog = (use_global_fog && psx_fog_near != psx_fog_far) ?
+		clamp(psx_fog_color.a * (out_depth - psx_fog_near) / (psx_fog_far - psx_fog_near), 0.0, 1.0) :
 		0.0;
 }
 
@@ -82,7 +83,6 @@ void psx_compute_fragment(vec2 uv_in, inout vec3 albedo_out, inout float alpha_o
 	
 	albedo_out = albedo_color.rgb * (1.0 - fog_strength) + fog_rgb;
 	alpha_out = albedo_color.a;
-
 	vec4 emission_color = texture(emission, uv) * vec4(emission_tint, 1.0);
 	emission_out = emission_color.rgb + fog_rgb;
 }
