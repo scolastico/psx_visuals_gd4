@@ -1,0 +1,50 @@
+name: 🐛 Bug Report
+description: Report a bug to help us improve the plugin.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: godot_version
+    attributes:
+      label: Godot Version
+      placeholder: e.g. 4.3 stable
+    validations:
+      required: true
+  - type: input
+    id: renderer
+    attributes:
+      label: Renderer
+      placeholder: e.g. Vulkan, Mobile
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: How can we recreate this issue?
+      placeholder: |
+        1. Add a GeometryInstance3D...
+        2. Apply the PSX material...
+        3. See error...
+    validations:
+      required: true
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+  - type: textarea
+    id: logs
+    attributes:
+      label: Screenshots or Error Logs
+      description: Paste any console errors or drag-and-drop screenshots here.
