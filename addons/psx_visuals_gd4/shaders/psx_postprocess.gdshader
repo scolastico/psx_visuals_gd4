@@ -2,8 +2,6 @@ shader_type canvas_item;
 
 #include "res://addons/psx_visuals_gd4/shaders/psx.gdshaderinc"
 
-global uniform int psx_bit_depth;
-
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
 
 void fragment() {
