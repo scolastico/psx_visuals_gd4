@@ -2,6 +2,8 @@
 
 This plugin for Godot 4 provides a comprehensive suite of shaders and tools to recreate the iconic aesthetic of the PlayStation 1 (PSX). It includes vertex snapping, affine texture mapping, distance-based fog, and post-processing dithering.
 
+For a GD3 version, visit [the repo of snotbane](https://github.com/snotbane/psx_visuals) from which this repo is based off.
+
 ## How the Plugin Works
 
 The plugin achieves its look through several key components:
@@ -60,4 +62,5 @@ You can find these settings under **Project Settings > Shader Globals**.
 
 ## License
 
-The original forked repository does not provide an explicit license in its source, but it is listed as using the Unlicense on the Godot Asset Library. However, all changes, Godot 4 porting work, and new code provided in this version are licensed under the MIT License.
+The [original forked repository](https://github.com/snotbane/psx_visuals) does not provide an explicit license in its source, but it is listed as using the Unlicense on the Godot Asset Library. However, all changes, Godot 4 porting work, and new code provided in this version are licensed under the MIT License.
+
