@@ -1,0 +1,13 @@
+{
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "[gdscript]": {
+        "editor.insertSpaces": false,
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true
+    },
+    "files.eol": "\n"
+}
