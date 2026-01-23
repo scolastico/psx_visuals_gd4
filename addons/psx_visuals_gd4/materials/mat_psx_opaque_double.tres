@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://addons/psx_visuals_gd4/shaders/psx_opaque_double.gdshader" id="1_sdbfj"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_sdbfj")
+shader_parameter/use_vertex_colors_in_albedo = true
+shader_parameter/use_global_fog = true
+shader_parameter/albedo_tint = Color(1, 1, 1, 1)
+shader_parameter/emission_tint = Color(1, 1, 1, 1)
+shader_parameter/alpha_scissor_threshold = 0.5
