@@ -13,6 +13,12 @@ func _on_node_added(node):
 	if node is GeometryInstance3D:
 		if node is Label3D:
 			return
+		
+		if node is GPUParticles3D:
+			return
+		
+		if node is CPUParticles3D:
+			return
 
 		# Check if this node specifically is disabled
 		if node.has_meta("psx_disable") and node.get_meta("psx_disable") == true:
